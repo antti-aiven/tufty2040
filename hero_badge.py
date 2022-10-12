@@ -103,8 +103,7 @@ Change direction if you hit boundary
         burst = 0
         display.set_pen(BLACK)
         display.clear()
-        BOUNCE_COLOR = display.create_pen(random.randint(0,255), 
-random.randint(0,255), random.randint(0,255))
+        BOUNCE_COLOR = display.create_pen(random.randint(0,255), random.randint(0,255), random.randint(0,255))
         
         if ball_y_down == True:
             ball_y_down = False
@@ -203,8 +202,7 @@ random.randint(0,255), random.randint(0,255))
             y_down = False
 
     if button_a.is_pressed:  # Randomize color
-        BOUNCE_COLOR = display.create_pen(random.randint(0,255), 
-random.randint(0,255), random.randint(0,255))
+        BOUNCE_COLOR = display.create_pen(random.randint(0,255), random.randint(0,255), random.randint(0,255))
 
     if button_up.is_pressed:  # Add speed
         if i < 25:
@@ -224,5 +222,3 @@ random.randint(0,255), random.randint(0,255))
             sleep(0.5)
             display.set_pen(BLACK)
             display.clear()
-
-
