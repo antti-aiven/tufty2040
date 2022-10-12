@@ -36,7 +36,7 @@ def compare_neighbours(x, y):
         if y < 0:
             toroid_y = int(240 / scale)
         elif y == int(240 / scale):
-            toroid_x = y
+            toroid_y = 0
         else:
             toroid_y = y
         f.add((toroid_x, toroid_y))
