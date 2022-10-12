@@ -26,14 +26,17 @@ def compare_neighbours(x, y):
         (x + 1, y),
         (x + 1, y + 1),
     ]
-    for x, y in n:
-        # Check if neighbour is out of bounds, replace with opposite edge if yes
         if x < 0:
             toroid_x = int(320 / scale)
+        elif x == int(320 / scale):
+            toroid_x = 0
         else:
             toroid_x = x
+
         if y < 0:
             toroid_y = int(240 / scale)
+        elif y == int(240 / scale):
+            toroid_x = y
         else:
             toroid_y = y
         f.add((toroid_x, toroid_y))
