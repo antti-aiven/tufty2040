@@ -26,20 +26,23 @@ def compare_neighbours(x, y):
         (x + 1, y),
         (x + 1, y + 1),
     ]
+    for x, y in n:
+        # Check if neighbour is out of bounds, replace with opposite edge if yes
         if x < 0:
-            toroid_x = int(320 / scale)
-        elif x == int(320 / scale):
+            toroid_x = scaled_x - 1
+        elif x == (scaled_x):
             toroid_x = 0
         else:
             toroid_x = x
 
         if y < 0:
-            toroid_y = int(240 / scale)
-        elif y == int(240 / scale):
+            toroid_y = scaled_y - 1
+        elif y == (scaled_y):
             toroid_y = 0
         else:
             toroid_y = y
         f.add((toroid_x, toroid_y))
+
     ln = sum([x in current_gen for x in f])
     return ln  # Return number of live neighbours
 
@@ -65,6 +68,7 @@ black = display.create_pen(0, 0, 0)
 red = display.create_pen(120, 0, 0)
 green = display.create_pen(0, 255, 0)
 yellow = display.create_pen(255, 255, 0)
+blue = display.create_pen(0, 0, 255)
 
 scale = int(8)  # Set scale, must be divisible by 2, good scales are 4, 8 or 16
 scaled_x = int(320 / scale)
@@ -86,6 +90,10 @@ while True:
         i = 0
         current_gen = set()  # Define a set to hold current_gen
         next_gen = set()
+        # Test pattern - edge still lifes, a blinker, a spaceship and a beacon.
+        # current_gen = {(25,11),(26,11),(27,11),(0,10),(0,11),(39,10),(39,11),(11,0),(10,0),(11,29),(10,29),(20,20),(21,20),(20,21),(21,21),(19,19),(19,18),(18,19),(18,18),(0,0),(39,29),(39,0),(0,29),(10,10),(11,10),(12,10),(12,9),(11,8)}
+        # for (x,y) in current_gen:
+        # draw_cell(x,y,green)
         c = 0
         while c < (450):
             c = c + 1
@@ -94,6 +102,7 @@ while True:
             current_gen.add((spawn_x, spawn_y))
             draw_cell(spawn_x, spawn_y, green)
         reset = False
+
     else:
         current_gen = next_gen
         next_gen = set()
@@ -102,8 +111,8 @@ while True:
     start = time()  # Start generation timer
     x = 0  # Start scan from zero
     while x <= scaled_x:
-        if x < 6:
-            print_status()
+        #        if x < 6:
+        #            print_status()
         display.update()
         y = 0
         while y <= scaled_y:
@@ -118,8 +127,10 @@ while True:
 
             # Any live cell with fewer than two live neighbours dies, as if by underpopulation.
             # Any live cell with more than three live neighbours dies, as if by overpopulation.
+            if ln == 0:
+                led.value(0)
+
             if ((ln < 2) or (ln > 3)) and (cell_alive == True):
-                current_gen.remove((x, y))  # remove dead cells to free memory
                 draw_cell(x, y, black)  # clear dead cells
                 led.value(0)
 
