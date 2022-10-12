@@ -48,7 +48,7 @@ def compare_neighbours(x, y):
 
 
 def print_status():
-    gen = f"Gen {i}"
+    gen = "Gen %s, %s cells" % (i, len(current_gen))
     width = display.measure_text(gen, 1, 0)
     display.set_pen(red)
     display.rectangle(0, 234, (width + 10), 6)
@@ -68,7 +68,7 @@ black = display.create_pen(0, 0, 0)
 red = display.create_pen(120, 0, 0)
 green = display.create_pen(0, 255, 0)
 yellow = display.create_pen(255, 255, 0)
-blue = display.create_pen(0, 0, 255)
+blue = display.create_pen(100, 100, 255)
 
 scale = int(8)  # Set scale, must be divisible by 2, good scales are 4, 8 or 16
 scaled_x = int(320 / scale)
@@ -100,7 +100,7 @@ while True:
             spawn_x = randint(0, scaled_x)
             spawn_y = randint(0, scaled_y)
             current_gen.add((spawn_x, spawn_y))
-            draw_cell(spawn_x, spawn_y, green)
+            draw_cell(spawn_x, spawn_y, blue)
         reset = False
 
     else:
@@ -111,9 +111,8 @@ while True:
     start = time()  # Start generation timer
     x = 0  # Start scan from zero
     while x <= scaled_x:
-        #        if x < 6:
-        #            print_status()
-        display.update()
+        if x < 20:
+            print_status()
         y = 0
         while y <= scaled_y:
             # Is current cell alive?
@@ -155,7 +154,7 @@ while True:
                 led.value(1)
             y = y + 1  # Next row
         x = x + 1  # Next column
-
+        display.update()
     print(
         f"Generation {i}, generate time {time() - start} sec, {len(current_gen)} cells in current_gen, {len(next_gen)} next gen"
     )
