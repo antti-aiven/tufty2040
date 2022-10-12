@@ -1,4 +1,5 @@
 from picographics import PicoGraphics, DISPLAY_TUFTY_2040
+
 display = PicoGraphics(display=DISPLAY_TUFTY_2040)
 import random
 from time import sleep
@@ -31,13 +32,13 @@ random.seed(1)
 display.set_pen(BLACK)
 display.clear()
 display.set_pen(BLUE)
-display.set_font('bitmap8')
+display.set_font("bitmap8")
 display.text("Hello my name is Antti", 60, 60, 200, 3)
 display.set_pen(RED)
-display.set_font('bitmap8')
+display.set_font("bitmap8")
 display.text("Hello my name is Antti", 61, 61, 200, 3)
 display.set_pen(GREEN)
-display.set_font('bitmap8')
+display.set_font("bitmap8")
 display.text("Hello my name is Antti", 62, 62, 200, 3)
 display.update()
 display.text("Press B for a random finn fact", 60, 140, 200, 2)
@@ -45,25 +46,20 @@ display.update()
 
 while True:
     if button_b.is_pressed:
-        random_fact = facts[random.randint(1,(len(facts) - 1))]
+        random_fact = facts[random.randint(1, (len(facts) - 1))]
         display.set_pen(BLACK)
         display.clear()
         display.set_pen(BLUE)
-        display.set_font('bitmap8')
+        display.set_font("bitmap8")
         display.text("Hello my name is Antti", 60, 60, 200, 3)
         display.set_pen(RED)
-        display.set_font('bitmap8')
+        display.set_font("bitmap8")
         display.text("Hello my name is Antti", 61, 61, 200, 3)
         display.set_pen(GREEN)
-        display.set_font('bitmap8')
+        display.set_font("bitmap8")
         display.text("Hello my name is Antti", 62, 62, 200, 3)
         display.set_pen(WHITE)
         display.update()
-        display.text("Random Finn Fact: %s" % random_fact, 60, 130, 200, 
-2)
+        display.text("Random Finn Fact: %s" % random_fact, 60, 130, 200, 2)
         display.update()
         sleep(1)
-        
-
-
-
