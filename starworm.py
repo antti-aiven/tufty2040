@@ -91,13 +91,11 @@ border
         display.rectangle(1, 1, 318, 238)
         display.set_pen(WHITE) # Reset to white draw color
         display.set_font('bitmap8')
-        display.text("Level %s, %s stars" % (level, stars), 80, 110, 200, 
-2)
+        display.text("Level %s, %s stars" % (level, stars), 80, 110, 200, 2)
         display.update() # Show text
         sleep(3)
         display.set_pen(BLACK)
-        display.text("Level %s, %s stars" % (level, stars), 80, 110, 200, 
-2)
+        display.text("Level %s, %s stars" % (level, stars), 80, 110, 200, 2)
         display.update() # Blank text
         random.seed(time())
         # Init variables
