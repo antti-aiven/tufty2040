@@ -1,3 +1,5 @@
+# NOT WRITTEN BY ME, needed this for the badge to work
+
 from picographics import PicoGraphics, DISPLAY_TUFTY_2040, PEN_RGB332
 from os import listdir
 import time, math, random, gc
